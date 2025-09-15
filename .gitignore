@@ -1,0 +1,19 @@
+# Node/Nest
+node_modules/
+dist/
+coverage/
+# envs
+.env
+.env.*.local
+apps/**/.env
+libs/**/.env
+# logs/temp
+logs/
+*.log
+tmp/
+# Docker
+*.pid
+# IDE
+.vscode/
+.DS_Store
+.idea/
