@@ -21,5 +21,10 @@
         "tsConfigPath": "apps/ms-auth/tsconfig.app.json"
       }
     }
+  },
+  "compilerOptions": {
+    "plugins": [
+      "@nestjs/swagger"
+    ]
   }
 }
