@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../prisma/generated/ms-trainings"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabla de ejercicios
+model Ejercicio {
+  id                String             @id @default(uuid())
+  nombre            String
+  descripcion       String
+  musculoObjetivo   String
+  urlVideo          String?
+  // Relaciones
+  rutinaEjercicios  RutinaEjercicio[]
+  registrosProgreso RegistroProgreso[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@map("ejercicios")
+}
+
+// Tabla de plantillas de rutina
+model Rutina {
+  id           String             @id @default(uuid())
+  nombre       String
+  creadorId    String
+  // Relaciones
+  ejercicios   RutinaEjercicio[]
+  asignaciones AsignacionRutina[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@map("rutinas")
+}
+
+// Tabla de detalle de la rutina
+model RutinaEjercicio {
+  id            String    @id @default(uuid())
+  rutinaId      String
+  ejercicioId   String
+  series        Int
+  repeticiones  String // Formato: "8-12"
+  cargaSugerida String // Formato: "60-70% 1RM"
+  // Relaciones
+  rutina        Rutina    @relation(fields: [rutinaId], references: [id])
+  ejercicio     Ejercicio @relation(fields: [ejercicioId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("rutina_ejercicios")
+}
+
+// Tabla de asignación cliente-rutina
+model AsignacionRutina {
+  id           String             @id @default(uuid())
+  clienteId    String
+  entrenadorId String
+  rutinaId     String
+  fechaInicio  DateTime
+  fechaFin     DateTime
+  activa       Boolean            @default(true)
+  // Relaciones
+  rutina       Rutina             @relation(fields: [rutinaId], references: [id])
+  registros    RegistroProgreso[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@map("asignacion_rutinas")
+}
+
+// Tabla de seguimiento del progreso
+model RegistroProgreso {
+  id              String           @id @default(uuid())
+  asignacionId    String
+  ejercicioId     String
+  fechaRegistro   DateTime
+  setsRealizados  Int
+  repeticionesMax Int
+  cargaLevantada  Decimal
+  notasEntrenador String?
+  // Relaciones
+  asignacion      AsignacionRutina @relation(fields: [asignacionId], references: [id])
+  ejercicio       Ejercicio        @relation(fields: [ejercicioId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@map("registro_progresos")
+}

@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/apps/ms-trainings",
+    "rootDir": "src",
+    "declaration": false,
+    "baseUrl": "../../",
+    "paths": {
+      "@prisma/ms-auth": [
+        "apps/prisma/generated/ms-trainings"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "../../apps/prisma/generated/ms-trainings/index.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
+    "**/*spec.ts"
+  ],
+}
+
+

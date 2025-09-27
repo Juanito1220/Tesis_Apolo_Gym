@@ -10,26 +10,25 @@
     "start": "nest start",
     "build": "nest build",
     "copy:prisma": "node -e \"require('fs-extra').copySync('apps/prisma/generated','dist/prisma/generated')\"",
-    
     "prestart:auth": "npm run build:ms-auth && npm run copy:prisma",
     "prestart:users": "npm run build:ms-users && npm run copy:prisma",
     "prestart:memberships": "npm run build:ms-memberships && npm run copy:prisma",
-
+    "prestart:trainings": "npm run build:ms-trainings && npm run copy:prisma",
     "start:dev:api": "nest start api-gateway --watch",
     "start:dev:auth": "nest start ms-auth --watch",
     "start:dev:users": "nest start ms-users --watch",
     "start:dev:memberships": "nest start ms-memberships --watch",
-    
+    "start:dev:trainings": "nest start ms-trainings --watch",
     "start:api": "nest start api-gateway",
     "start:auth": "nest start ms-auth",
     "start:users": "nest start ms-users",
     "start:memberships": "nest start ms-memberships",
-    
+    "start:trainings": "nest start ms-trainings",
     "start:prod:api": "node dist/apps/api-gateway/main.js",
     "start:prod:auth": "node dist/apps/ms-auth/main.js",
     "start:prod:users": "node dist/apps/ms-users/main.js",
     "start:prod:memberships": "node dist/apps/ms-memberships/main.js",
-    
+    "start:prod:trainings": "node dist/apps/ms-trainings/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -38,10 +37,10 @@
     "test:e2e": "jest --config ./apps/apolo-gym/test/jest-e2e.json",
     "prisma:gen:auth": "prisma generate --schema apps/ms-auth/prisma/schema.prisma",
     "prisma:gen:users": "prisma generate --schema apps/ms-users/prisma/schema.prisma",
-    
     "build:ms-auth": "tsc -p apps/ms-auth/tsconfig.app.json && tsc-alias -p apps/ms-auth/tsconfig.app.json",
     "build:ms-users": "tsc -p apps/ms-users/tsconfig.app.json && tsc-alias -p apps/ms-users/tsconfig.app.json",
-    "build:ms-memberships": "tsc -p apps/ms-memberships/tsconfig.app.json && tsc-alias -p apps/ms-memberships/tsconfig.app.json"
+    "build:ms-memberships": "tsc -p apps/ms-memberships/tsconfig.app.json && tsc-alias -p apps/ms-memberships/tsconfig.app.json",
+    "build:ms-trainings": "tsc -p apps/ms-trainings/tsconfig.app.json && tsc-alias -p apps/ms-trainings/tsconfig.app.json"
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.1",
@@ -58,12 +57,14 @@
     "class-validator": "^0.14.2",
     "cookie-parse": "^0.4.0",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.2",
     "helmet": "^8.1.0",
     "http-proxy-middleware": "^3.0.5",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "stripe": "^18.5.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {

@@ -15,7 +15,9 @@ async function bootstrap() {
 
   const AUTH_URL = process.env.AUTH_URL || 'http://localhost:3001';
   const USERS_URL = process.env.USERS_URL || 'http://localhost:3002';
-  const MEMBERSHIPS_URL = process.env.MEMBERSHIPS_URL || 'http://localhost:3003';
+  const MEMBERSHIPS_URL =
+    process.env.MEMBERSHIPS_URL || 'http://localhost:3003';
+  const TRAININGS_URL = process.env.TRAININGS_URL || 'http://localhost:3004';
 
   app.use(
     '/ms-users',
@@ -55,6 +57,37 @@ async function bootstrap() {
       changeOrigin: true,
       xfwd: true,
       pathRewrite: (path) => '/memberships' + path,
+    }),
+  );
+
+  // Proxy para trainings
+  app.use(
+    '/ejercicios',
+    createProxyMiddleware({
+      target: TRAININGS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/ejercicios' + path,
+    }),
+  );
+
+  app.use(
+    '/rutinas',
+    createProxyMiddleware({
+      target: TRAININGS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/rutinas' + path,
+    }),
+  );
+
+  app.use(
+    '/progreso',
+    createProxyMiddleware({
+      target: TRAININGS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/progreso' + path,
     }),
   );
 

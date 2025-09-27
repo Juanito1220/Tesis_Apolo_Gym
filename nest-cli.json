@@ -38,6 +38,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/ms-memberships/tsconfig.app.json"
       }
+    },
+    "ms-trainings": {
+      "type": "application",
+      "root": "apps/ms-trainings",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-trainings/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-trainings/tsconfig.app.json"
+      }
     }
   },
   "compilerOptions": {
