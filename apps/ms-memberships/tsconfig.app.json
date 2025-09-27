@@ -1,0 +1,24 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "declaration": false,
+        "outDir": "../../dist/apps/ms-memberships",
+        "rootDir": "src",
+        "paths": {
+            "@prisma/ms-memberships": [
+                "apps/prisma/generated/ms-memberships"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "../../apps/prisma/generated/ms-auth/index.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "test",
+        "**/*spec.ts"
+    ],
+    
+}

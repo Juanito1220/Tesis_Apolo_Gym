@@ -29,6 +29,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/ms-users/tsconfig.app.json"
       }
+    },
+    "ms-memberships": {
+      "type": "application",
+      "root": "apps/ms-memberships",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-memberships/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-memberships/tsconfig.app.json"
+      }
     }
   },
   "compilerOptions": {

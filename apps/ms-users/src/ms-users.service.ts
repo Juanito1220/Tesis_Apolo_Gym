@@ -11,7 +11,6 @@ export class MsUsersService {
   constructor(private prisma: PrismaService) {}
 
   async upsertMe(userId: string, dto: UpsertMeDto) {
-    console.log("Hola2");
     const data: any = { ...dto };
     if ('birthDate' in dto && dto.birthDate) {
       data.birthDate = new Date(dto.birthDate as string);

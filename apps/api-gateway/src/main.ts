@@ -15,6 +15,7 @@ async function bootstrap() {
 
   const AUTH_URL = process.env.AUTH_URL || 'http://localhost:3001';
   const USERS_URL = process.env.USERS_URL || 'http://localhost:3002';
+  const MEMBERSHIPS_URL = process.env.MEMBERSHIPS_URL || 'http://localhost:3003';
 
   app.use(
     '/ms-users',
@@ -33,6 +34,27 @@ async function bootstrap() {
       changeOrigin: true,
       xfwd: true,
       pathRewrite: (path) => '/auth' + path,
+    }),
+  );
+
+  // Proxy para memberships
+  app.use(
+    '/plans',
+    createProxyMiddleware({
+      target: MEMBERSHIPS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/plans' + path,
+    }),
+  );
+
+  app.use(
+    '/memberships',
+    createProxyMiddleware({
+      target: MEMBERSHIPS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/memberships' + path,
     }),
   );
 
