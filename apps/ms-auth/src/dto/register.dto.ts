@@ -1,7 +1,7 @@
 // apps/ms-auth/src/dto/register.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsEnum, IsOptional, MinLength } from 'class-validator';
-import { Role } from '@prisma/client';
+import { Role } from '../../../prisma/generated/ms-auth';
 
 export class RegisterDto {
   @ApiProperty({ example: 'admin@apolo.local' })

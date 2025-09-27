@@ -20,6 +20,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/ms-auth/tsconfig.app.json"
       }
+    },
+    "ms-users": {
+      "type": "application",
+      "root": "apps/ms-users",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-users/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-users/tsconfig.app.json"
+      }
     }
   },
   "compilerOptions": {

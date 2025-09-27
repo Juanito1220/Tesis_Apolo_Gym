@@ -3,15 +3,24 @@
   "compilerOptions": {
     "outDir": "../../dist/apps/ms-auth",
     "rootDir": "src",
-    "declaration": false
+    "declaration": false,
+    "baseUrl": "../../",
+    "paths": {
+      "@prisma/ms-auth": [
+        "apps/prisma/generated/ms-auth"
+      ]
+    }
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*",
+    "../../apps/prisma/generated/ms-auth/index.d.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "test",
     "**/*spec.ts"
-  ]
+  ],
 }
+
+

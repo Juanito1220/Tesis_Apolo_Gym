@@ -21,6 +21,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@prisma/ms-auth": [
+        "apps/ms-auth/generated/ms-auth"
+      ],
+      "@prisma/ms-users": [
+        "apps/ms-users/generated/ms-users"
+      ]
+    }
   }
 }

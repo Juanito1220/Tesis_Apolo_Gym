@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../prisma/generated/ms-users"
+}
+
+model UserProfile {
+  userId     String   @id
+  firstName  String?
+  lastName   String?
+  gender     Gender?
+  birthDate  DateTime?
+  phone      String?
+  email      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+}
+
+enum Gender {
+  M
+  F
+  OTHER
+  UNSPECIFIED
+}

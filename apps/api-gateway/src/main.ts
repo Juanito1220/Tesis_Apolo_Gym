@@ -14,8 +14,18 @@ async function bootstrap() {
   );
 
   const AUTH_URL = process.env.AUTH_URL || 'http://localhost:3001';
+  const USERS_URL = process.env.USERS_URL || 'http://localhost:3002';
 
-  // Express recorta '/auth' al montar; lo reponemos con pathRewrite
+  app.use(
+    '/ms-users',
+    createProxyMiddleware({
+      target: USERS_URL,
+      changeOrigin: true,
+      xfwd: true,
+      pathRewrite: (path) => '/ms-users' + path,
+    }),
+  );
+
   app.use(
     '/auth',
     createProxyMiddleware({

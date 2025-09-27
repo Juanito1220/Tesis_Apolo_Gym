@@ -16,7 +16,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
       envFilePath: ['apps/ms-auth/.env'],
     }),
     PrismaModule,
-    JwtModule.register({}), // tomamos secretos desde process.env en runtime
+    JwtModule.register({}),
   ],
   controllers: [MsAuthController],
   providers: [MsAuthService, JwtAccessStrategy, JwtRefreshStrategy],
